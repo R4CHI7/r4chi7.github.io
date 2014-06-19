@@ -28,7 +28,48 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://blog.rachitgupta.in/2014/06/gsoc-improve-usability-of-personas-introduction/">GSoC - Improve Usability of Personas - Introduction</a></h1>
+                    <h1 class="entry-title"><a href="http://blog.rachitgupta.in/2014/06/gsoc-improve-usability-of-personas-progress/">GSoC - Improve Usability of Personas - Progress</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-06-19T00:00:00">
+                19-06-2014
+        </abbr>
+
+        <address class="vcard author">
+                By <a class="url fn" href="http://blog.rachitgupta.in/author/rachit-gupta.html">Rachit Gupta</a>
+        </address>
+<p>In <a href="http://blog.rachitgupta.in/category/technology">Technology</a>. </p>
+<p>tags: <a href="http://blog.rachitgupta.in/tag/gsoc/">gsoc</a><a href="http://blog.rachitgupta.in/tag/libreoffice/">libreoffice</a><a href="http://blog.rachitgupta.in/tag/foss/">foss</a></p>
+</footer><!-- /.post-info --><p>I don't know about the flying abilities of time, but it does pass quickly when you love what you are doing! Such is the case with my Google Summer of Code. It's time for mid-term evaluations already!</p>
+<p>For those who do not know what I'm talking about, check out my <a href="http://blog.rachitgupta.in/2014/06/gsoc-improve-usability-of-personas-introduction/">previous post</a>. I have been working a lot in the last month and have achieved quite a lot. Obviously, none of that was possible without continuous support and help from my mentor, <a href="http://holesovsky.blogspot.in/"><strong>Jan Holesovsky</strong></a>.</p>
+<p>So, what have I achieved till now? Let's take a look at the screenshot of the <strong>Select Persona Dialog</strong> the way it looks now:</p>
+<p><img alt="Select Persona Dialog" src="/images/lo-personas_new.png" /></p>
+<p>The users can enter their <em>favorite</em> terms to search for related themes. What happens then?</p>
+<ol>
+<li>The <a href="https://developer.mozilla.org/en-US/docs/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide/The_generic_AMO_API#search">Mozilla's AMO API</a> is used to get the search results. If anyone is interested in the data that is retrieved, <a href="https://addons.allizom.org/en-US/firefox/api/1.5/search/south%20park/9">click this</a>.</li>
+<li>The retrieved XML is parsed and the <em>learnmore</em> tag's value is used to get the HTML content of the theme from which, the various attributes of the persona, such as it's name, preview file URL, header file URL. text color etc are retrieved and saved.</li>
+<li>The preview URLs are used to get the images and these are displayed in the dialog.
+All this parsing and fetching is done in a separate thread. So no hanging of the UI :-)</li>
+</ol>
+<p>I know, it's too geeeky! Let's see how it looks:</p>
+<p><img alt="Select Persona Dialog Search" src="/images/lo-personas_search.png" /></p>
+<p>Yes, I'm a South Park fan, if you haven't guessed till now ;-)</p>
+<p>Now, when the user clicks OK after selecting a theme, the header and footer files for the theme are downloaded and applied (this too in a separate thread), and voila!</p>
+<p><img alt="Select Persona Dialog Result" src="/images/lo-personas_result.png" /></p>
+<p>Presently, I am working on the functionality of using the default themes that are provided with the LibreOffice suite. After this, the main task of the GSoC will be over (pretty cool, huh?), and I'll be looking towards <strong>Jan</strong> for more work ;-). Hoping to get my code merged in the core repo soon!</p>
+<p>Keep watching this space for more. Cheers!</p><p>There are <a href="http://blog.rachitgupta.in/2014/06/gsoc-improve-usability-of-personas-progress/#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://blog.rachitgupta.in/2014/06/gsoc-improve-usability-of-personas-introduction/" rel="bookmark"
+                           title="Permalink to GSoC - Improve Usability of Personas - Introduction">GSoC - Improve Usability of Personas - Introduction</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-06-03T00:00:00">
                 03-06-2014
@@ -39,26 +80,11 @@
         </address>
 <p>In <a href="http://blog.rachitgupta.in/category/technology">Technology</a>. </p>
 <p>tags: <a href="http://blog.rachitgupta.in/tag/gsoc/">gsoc</a><a href="http://blog.rachitgupta.in/tag/libreoffice/">libreoffice</a><a href="http://blog.rachitgupta.in/tag/foss/">foss</a></p>
-</footer><!-- /.post-info --><p>Libreoffice 4.0 introduced the concept of using <a href="https://addons.mozilla.org/en-US/firefox/themes/">Personas</a>. The users can apply themes to their office suite! Since then, there has been an idea on the <a href="https://wiki.documentfoundation.org/Development/GSoC/Ideas#Improve_usability_of_Personas">GSoC Page wiki</a> to improve the usability of the selection of the themes process. </p>
-<p>But, what improvements? The current implementation requires the user to browse through the themes in their browser, select the theme of their liking, copy and paste the URL in the dialog, and wait till the theme is downloaded and applied. <strong>Too much work</strong> IMO. My work during the summer will be to make this process easy and intuitive for the users. Also, the current implementation parses the HTML from the personas page to get the details.</p>
-<p><img alt="Select Persona Dialog" src="/images/lo-personas.png" /></p>
-<p>My <a href="https://www.google-melange.com/gsoc/project/details/google/gsoc2014/r4chi7/5757334940811264">proposal</a> for the idea got selected and I'll be working on this idea this summer. My aim is to make the process of searching for themes and applying them, easy and intuitive for the users, alongwith making the process work better and faster.</p>
-<p>Following are the main tasks for this summer:</p>
-<ul>
-<li>Allow users to search for themes in the dialog with the help of <a href="https://developer.mozilla.org/en-US/docs/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide/The_generic_AMO_API#search">Mozilla's AMO API</a>.</li>
-<li>Allow users to select their favorite theme from the dialog itself.</li>
-<li>Make the searching and downloading of themes run in a separate thread so the UI does not hang awkwardly.</li>
-<li>Allow users(read designers) to apply their self made themes.</li>
-<li>Solve some Personas related bugs/enhancement requests.</li>
-<li><em>Possibly</em>, do some pagination so the users can browse more themes in the dialog.</li>
-</ul>
-<p>With some research, and a lot of help from my mentor, <a href="http://holesovsky.blogspot.in/"><strong>Jan Holesovsky</strong></a>, the work is under progress. Keep watching this space for more about the progress!</p>
-<p>Cheers to the summer of 2014!</p><p>There are <a href="http://blog.rachitgupta.in/2014/06/gsoc-improve-usability-of-personas-introduction/#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>Libreoffice 4.0 introduced the concept of using <a href="https://addons.mozilla.org/en-US/firefox/themes/">Personas</a>. The users can apply themes to their office suite! Since then, there has been an idea on the <a href="https://wiki.documentfoundation.org/Development/GSoC/Ideas#Improve_usability_of_Personas">GSoC Page wiki</a> to improve the usability of the selection of the themes process. </p>
+<p>But, what improvements? The current implementation requires the user ...</p>
+                <a class="readmore" href="http://blog.rachitgupta.in/2014/06/gsoc-improve-usability-of-personas-introduction/">read more</a>
+<p>There are <a href="http://blog.rachitgupta.in/2014/06/gsoc-improve-usability-of-personas-introduction/#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
